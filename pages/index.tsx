@@ -18,10 +18,12 @@ const Home: NextPage = () => {
     e.preventDefault();
     if (e.target.files) {
       const reader = new FileReader();
+
       reader.onerror = (e) => {
         console.log(e.target?.error);
         setCurrentState(State.ERROR);
       };
+
       reader.onload = (loader) => {
         formRef.current?.reset();
         const workbook = xlsx.read(loader.target?.result, { type: 'array' });
@@ -32,6 +34,7 @@ const Home: NextPage = () => {
         setExportData(organizedData);
         setCurrentState(State.DONE);
       };
+
       setCurrentState(State.LOADING);
       reader.readAsArrayBuffer(e.target.files[0]);
     }
