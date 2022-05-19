@@ -33,6 +33,7 @@ const Home: NextPage = () => {
         const organizedData = organizeData(data);
         setExportData(organizedData);
         setCurrentState(State.DONE);
+        fetch(`/api/usage-alert`);
       };
 
       setCurrentState(State.LOADING);
